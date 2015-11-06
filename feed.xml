@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Jacyzon</title>
+<generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="https://jacyzon.com/feed.xml" />
+<link rel="alternate" type="text/html" href="https://jacyzon.com" />
+<updated>2015-11-06T16:39:47+08:00</updated>
+<id>https://jacyzon.com/</id>
+<author>
+  <name>Jason YiZhang Chen</name>
+  <uri>https://jacyzon.com/</uri>
+  <email>jz@jacyzon.com</email>
+</author>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[Archlinux Installation Tutorial Part 1 (Base System)]]></title>
+  <link rel="alternate" type="text/html" href="https://jacyzon.com/archlinux-installation-tutorial-part1/" />
+  <id>https://jacyzon.com/archlinux-installation-tutorial-part1</id>
+  <published>2015-10-29T23:51:39+08:00</published>
+  <updated>2015-10-29T23:51:39+08:00</updated>
+  <author>
+    <name>Jason YiZhang Chen</name>
+    <uri>https://jacyzon.com</uri>
+    <email>jz@jacyzon.com</email>
+  </author>
+  <content type="html">
+    &lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+  &lt;header&gt;
+    &lt;h3&gt;Archlinux Installation - Part 1&lt;/h3&gt;
+  &lt;/header&gt;
+&lt;div id=&quot;drawer&quot;&gt;
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#step-1-&quot; id=&quot;markdown-toc-step-1-&quot;&gt;Step 1 分割硬碟&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#bios-boot-partition&quot; id=&quot;markdown-toc-bios-boot-partition&quot;&gt;BIOS boot partition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#boot-partition&quot; id=&quot;markdown-toc-boot-partition&quot;&gt;Boot partition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#swap-partition&quot; id=&quot;markdown-toc-swap-partition&quot;&gt;Swap partition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#root-partition&quot; id=&quot;markdown-toc-root-partition&quot;&gt;Root partition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#home-partition&quot; id=&quot;markdown-toc-home-partition&quot;&gt;Home partition&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#step-2-&quot; id=&quot;markdown-toc-step-2-&quot;&gt;Step 2 格式化&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#boot-partition-1&quot; id=&quot;markdown-toc-boot-partition-1&quot;&gt;Boot partition&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#swap-partitin&quot; id=&quot;markdown-toc-swap-partitin&quot;&gt;Swap partitin&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#root-file-system&quot; id=&quot;markdown-toc-root-file-system&quot;&gt;Root file system&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#home-paritition&quot; id=&quot;markdown-toc-home-paritition&quot;&gt;Home paritition&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#step-3-&quot; id=&quot;markdown-toc-step-3-&quot;&gt;Step 3 安裝&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#mount-file-system&quot; id=&quot;markdown-toc-mount-file-system&quot;&gt;Mount file system&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#mirror-list-ranking&quot; id=&quot;markdown-toc-mirror-list-ranking&quot;&gt;Mirror List Ranking&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#install-base-system&quot; id=&quot;markdown-toc-install-base-system&quot;&gt;Install Base System&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#generate-fstab&quot; id=&quot;markdown-toc-generate-fstab&quot;&gt;Generate fstab&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#chroot&quot; id=&quot;markdown-toc-chroot&quot;&gt;Chroot&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#locale&quot; id=&quot;markdown-toc-locale&quot;&gt;Locale&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#timezone--clock&quot; id=&quot;markdown-toc-timezone--clock&quot;&gt;Timezone &amp;amp; Clock&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#init-file-system&quot; id=&quot;markdown-toc-init-file-system&quot;&gt;Init File System&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#bootloader-grub&quot; id=&quot;markdown-toc-bootloader-grub&quot;&gt;Bootloader (Grub)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#hostname&quot; id=&quot;markdown-toc-hostname&quot;&gt;Hostname&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#pacman-setting&quot; id=&quot;markdown-toc-pacman-setting&quot;&gt;Pacman setting&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#setup-user--change-password&quot; id=&quot;markdown-toc-setup-user--change-password&quot;&gt;Setup User &amp;amp; Change Password&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#step-4-&quot; id=&quot;markdown-toc-step-4-&quot;&gt;Step 4 第一次的重開機&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#reboot&quot; id=&quot;markdown-toc-reboot&quot;&gt;Reboot&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#network-setup&quot; id=&quot;markdown-toc-network-setup&quot;&gt;Network Setup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;p&gt;最近換了SSD (其實好幾個月了.. 拖到現在才寫)，舊電腦是傳統的BIOS，新電腦變UEFI BIOS，需要調整一下分割區跟bootloader,
+想說順便寫一下教學順便紀錄一下如何安裝Archlinux, BIOS boot + EFI 開機。&lt;/p&gt;
+
+&lt;p&gt;Archlinux 是使用 &lt;a href=&quot;https://en.wikipedia.org/wiki/Rolling_release&quot;&gt;Rolling Release&lt;/a&gt; 機制的Linux 作業系統，沒有固定的 release 週期，只有 LiveCD 每月會更新一次，不像 Windows 或 Ubuntu 每更新大版本就要重灌一次電腦，作為一般的工作機我認為是很適合的。&lt;/p&gt;
+
+&lt;p&gt;另外喜歡的一點是 Archlinux 不會給你多餘的，所有東西都是盡量跟 upstream 一致，
+不太會在 package repository 做多餘的更改，因為什麽東西都要自己設定，對於如何運作會有比較清楚的了解，
+不會說，安裝系統就下一步下一步就裝好了，不知道爲什麽就 work 了。對於 Linux 有點熱情的話可以嘗試看看，對於電腦系統的運作會有比較好的了解。&lt;/p&gt;
+
+&lt;p&gt;如果你是初學者、一般使用者，或是本來就很了解 Linux 系統，那些瑣碎的安裝與設定流程不是你喜歡或想要的，
+這邊推薦幾個我覺得不錯的發行版 ( 當然每個 distro 我都愛但沒用過總不敢亂說 )&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.debian.org&quot;&gt;Debian&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://xubuntu.org&quot;&gt;Xubuntu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://manjaro.github.io&quot;&gt;Manjaro&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.opensuse.org&quot;&gt;Opensuse&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在進入 Archlinux 的奇幻旅程之前，&lt;a href=&quot;https://wiki.archlinux.org&quot;&gt;Archlinux Wiki&lt;/a&gt; 是平常常會查閱的文件，大概是我目前看到維護最好的 Linux Wiki, 很多教學或問題都可以在 Wiki 找到，必讀。&lt;/p&gt;
+
+&lt;p&gt;雖然有時候還是會發現：很好很詳細，還是不知道怎麽做 哈哈哈。&lt;/p&gt;
+
+&lt;p&gt;———– 我是分割線 ———–&lt;/p&gt;
+
+&lt;p&gt;** 進入正題 ** &lt;del&gt;前面廢話太多&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;首先先去官網下載 &lt;a href=&quot;https://www.archlinux.org/download/&quot;&gt;Live CD&lt;/a&gt;, 不論是用燒錄光碟或是用&lt;a href=&quot;https://wiki.archlinux.org/index.php/USB_flash_installation_media&quot;&gt; USB 隨身碟&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;step-1-&quot;&gt;Step 1 分割硬碟&lt;/h1&gt;
+
+&lt;p&gt;我用兩顆硬碟做示範，之後會格式化，&lt;strong&gt;資料會不見&lt;/strong&gt;，如果你是用舊電腦記得先備份啊，或是在 VM 底下操作。
+這裡有 &lt;code&gt;sda 64G, sdb 128G&lt;/code&gt;，sda 裝系統，sdb 規劃作為家目錄。&lt;/p&gt;
+
+&lt;p&gt;我們可以用 lsblk 列出所有 block devices。&lt;/p&gt;
+
+&lt;p&gt;gdisk 是硬碟分割工具，與 fdisk 的區別是支援 GPT 分割表。
+我們先處理第一顆硬碟。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdisk /dev/sda&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sda.png&quot; alt=&quot;gdisk sda&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;p&lt;/code&gt; 來列出現有的分割區，目前是空的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_p.png&quot; alt=&quot;gdisk p&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bios-boot-partition&quot;&gt;BIOS boot partition&lt;/h2&gt;
+
+&lt;p&gt;為了讓 Grub 能在 Legacy BIOS 開機，需要新增一個 BIOS boot partition。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;n&lt;/code&gt; 來新增一個分割區。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition number: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;First sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Last sector: +1M&lt;/li&gt;
+  &lt;li&gt;Partition type: ef02。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_bios_boot_partition.png&quot; alt=&quot;gdisk bios boot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;再次用 p 來檢查分割區。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_bios_boot_partition_p.png&quot; alt=&quot;gdisk bios boot p&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;boot-partition&quot;&gt;Boot partition&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition number: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;First sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Last sector: +100M&lt;/li&gt;
+  &lt;li&gt;Partition type: (預設, 直接enter)。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_boot_partition.png&quot; alt=&quot;gdisk boot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;再次用 p 來檢查分割區。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_boot_partition_p.png&quot; alt=&quot;gdisk boot p&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;swap-partition&quot;&gt;Swap partition&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition number: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;First sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Last sector: +4096M&lt;/li&gt;
+  &lt;li&gt;Partition type: 8200 (Linux swap)。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_swap_partition.png&quot; alt=&quot;gdisk swap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;關於 swap partition 到底要分割多大，參考 Rat Hat 手冊 &lt;a href=&quot;https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html&quot;&gt;Recommended System Swap Space&lt;/a&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Amount of RAM in the system&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Recommended swap space&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;Recommended swap space if allowing for hibernation&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;less than 2 GB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2 times the amount of RAM&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3 times the amount of RAM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2 GB - 8 GB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Equal to the amount of RAM&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2 times the amount of RAM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;8 GB - 64 GB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0.5 times the amount of RAM&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1.5 times the amount of RAM&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;more than 64 GB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;workload dependent&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;hibernation not recommended&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;如果想要使用休眠功能，swap partition 必須大於實體 RAM 大小。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;再次用&lt;code&gt;p&lt;/code&gt;列出分割表狀態&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_swap_partition_p.png&quot; alt=&quot;gdisk swap p&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;root-partition&quot;&gt;Root partition&lt;/h2&gt;
+
+&lt;p&gt;剩餘的空間我們分割作為跟目錄使用&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition number: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;First sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Last sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Partition type: (預設, 直接enter)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_root_partition.png&quot; alt=&quot;gdisk root&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;再次用&lt;code&gt;p&lt;/code&gt;列出分割表狀態&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_root_partition_p.png&quot; alt=&quot;gdisk root p&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最終我們按&lt;code&gt;w&lt;/code&gt;將分割表寫入硬碟&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sda_w.png&quot; alt=&quot;gdisk sda w&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;home-partition&quot;&gt;Home partition&lt;/h2&gt;
+
+&lt;p&gt;sdb 分割作為home partition。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdisk /dev/sdb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sdb.png&quot; alt=&quot;gdisk sdb&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Partition number: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;First sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Last sector: (預設, 直接enter)&lt;/li&gt;
+  &lt;li&gt;Partition type: (預設, 直接enter)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition.png&quot; alt=&quot;gdisk home&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;再次用&lt;code&gt;p&lt;/code&gt;列出分割表狀態&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition_p.png&quot; alt=&quot;gdisk home p&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最終我們按&lt;code&gt;w&lt;/code&gt;將分割表寫入硬碟&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sdb_w.png&quot; alt=&quot;gdisk sdb w&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;step-2-&quot;&gt;Step 2 格式化&lt;/h1&gt;
+
+&lt;h2 id=&quot;boot-partition-1&quot;&gt;Boot partition&lt;/h2&gt;
+
+&lt;p&gt;建議格式化為Fat 32，被比較多的 UEFI BIOS 與 Bootloader 支援。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkfs.vfat -F &lt;span class=&quot;m&quot;&gt;32&lt;/span&gt; /dev/sda2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkfs_vfat_boot_partition.png&quot; alt=&quot;mkfs vfat boot partition&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;swap-partitin&quot;&gt;Swap partitin&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkswap -F &lt;span class=&quot;m&quot;&gt;32&lt;/span&gt; /dev/sda3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkswap.png&quot; alt=&quot;mkswap&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;root-file-system&quot;&gt;Root file system&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkfs.btrfs /dev/sda4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkfs_btrfs_root_partition.png&quot; alt=&quot;mkfs btrfs root partition&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;home-paritition&quot;&gt;Home paritition&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkfs.ext4 /dev/sdb1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkfs_ext4_home_partition.png&quot; alt=&quot;mkfs ext4 home partition&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;step-3-&quot;&gt;Step 3 安裝&lt;/h1&gt;
+
+&lt;p&gt;在安裝前必須先將檔案系統掛載進來，chroot 之後才可以安裝。&lt;/p&gt;
+
+&lt;h2 id=&quot;mount-file-system&quot;&gt;Mount file system&lt;/h2&gt;
+
+&lt;p&gt;掛載 Root file system&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount /dev/sda4 /mnt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mount_root.png&quot; alt=&quot;mount root&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;掛載 Boot partition&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkdir /mnt/boot&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkdir_boot.png&quot; alt=&quot;mkdir boot&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount /dev/sda2 /mnt/boot&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mount_boot.png&quot; alt=&quot;mount boot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;掛載 Swap partition&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;swapon /dev/sda3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/swapon.png&quot; alt=&quot;swapon&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;掛載 Home partition&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkdir /mnt/home&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkdir_home.png&quot; alt=&quot;mkdir home&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount /dev/sdb1 /mnt/home&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mount_home.png&quot; alt=&quot;mount home&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mirror-list-ranking&quot;&gt;Mirror List Ranking&lt;/h2&gt;
+
+&lt;p&gt;在安裝前先利用&lt;code&gt;rankmirrors&lt;/code&gt;工具來排序比較快的站點。
+在排序前先複製一份 mirrorlist，因為等一下會被覆蓋掉，再註解掉不想加入的站點(可選)，便可開始排序。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+rankmirrors -n &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt; /etc/pacman.d/mirrorlist.bak &amp;gt; /etc/pacman.d/mirrorlist&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/rankmirrors.png&quot; alt=&quot;rankmirrors&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;install-base-system&quot;&gt;Install Base System&lt;/h2&gt;
+
+&lt;p&gt;安裝基本的 base 和 base-devel packages，base-devel 包含了基本的編譯工具。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pacstrap -i /mnt base base-devel&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;按 Enter 安裝所有的軟體。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/pacstrap.png&quot; alt=&quot;pacstrap&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;generate-fstab&quot;&gt;Generate fstab&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;/etc/fstab&lt;/code&gt; 這個檔案設定了 Linux 系統開機需要掛載哪些檔案系統，使用&lt;code&gt;genfstab&lt;/code&gt; 可以自動產生。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-U&lt;/code&gt; 的參數是表示使用 UUID 作為分割區的識別碼，不會有因為換了排線接線順序導致代號變動的情況。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;genfatab -U -p /mnt &amp;gt;&amp;gt; /mnt/etc/fstab&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/genfstab.png&quot; alt=&quot;genfstab&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;如果使用 SSD ，建議可以在產生之後再編輯 &lt;code&gt;/etc/fstab&lt;/code&gt; ，在 SSD 的分割區多加 &lt;code&gt;discard&lt;/code&gt; 與 &lt;code&gt;noatime&lt;/code&gt; 這些參數。
+&lt;code&gt;discard&lt;/code&gt; 參數會在檔案被刪除之後真的實際抹除檔案，因為在 SSD ，寫入檔案時必須先將先前資料清空。
+傳統 Hard Drive 刪除檔案只是將檔案標記為可刪除的狀態，詳見 &lt;a href=&quot;https://en.wikipedia.org/wiki/Trim_%28computing%29&quot;&gt;Trim&lt;/a&gt;。
+&lt;code&gt;noatime&lt;/code&gt; 則是不記錄檔案讀取時間。以上兩個設定，對 SSD 的效能都有幫助。
+關於 &lt;code&gt;atime&lt;/code&gt;,&lt;code&gt;noatime&lt;/code&gt;, &lt;code&gt;relatime&lt;/code&gt; 詳見 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Fstab#atime_options&quot;&gt;fstab&lt;/a&gt; 與 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Solid_State_Drives&quot;&gt;Solid State Drives&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;chroot&quot;&gt;Chroot&lt;/h2&gt;
+
+&lt;p&gt;Chroot到掛載的檔案系統裡面使用root身分來繼續安裝系統，
+chroot 之後就很像進到了要安裝的系統裡面，雖然我們現在是用Live CD。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;arch-root /mnt /bin/bash&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/chroot.png&quot; alt=&quot;chroot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;locale&quot;&gt;Locale&lt;/h2&gt;
+
+&lt;p&gt;編輯語系設定檔，編輯 &lt;code&gt;/etc/locale.gen&lt;/code&gt;，將 &lt;code&gt;zh_TW.UTF-8 UTF-8&lt;/code&gt; 與 &lt;code&gt;en_US.UTF-8 UTF-8&lt;/code&gt; 取消註解。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/locale.png&quot; alt=&quot;locale&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;產生語系檔&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;locale-gen&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/locale_gen.png&quot; alt=&quot;locale gen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;設定預設語系&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;en_US.UTF-8&amp;quot;&lt;/span&gt; &amp;gt; /etc/locale.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/default_locale.png&quot; alt=&quot;default locale&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;建議可以用英文作為預設語系，這樣在無 GUI 介面下的 terminal 時才不會有中文字型問題，
+真正的語系可以往後在 &lt;code&gt;.xinitrc&lt;/code&gt; 設定。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;timezone--clock&quot;&gt;Timezone &amp;amp; Clock&lt;/h2&gt;
+
+&lt;p&gt;設定時區&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ln -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/timezone.png&quot; alt=&quot;timezone&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;同步 Hardware clock&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;hwclock --systohc --utc&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/hwclock.png&quot; alt=&quot;hwclock&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;如果你是灌雙系統 (Linux/Windows)，可能會遇到 Windows 用 localtime 非 UTC 的問題，
+詳見 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Time#UTC_in_Windows&quot;&gt;UTC_in_Windows&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;init-file-system&quot;&gt;Init File System&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkinitcpio -p linux&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkramfs.png&quot; alt=&quot;mkramfs&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bootloader-grub&quot;&gt;Bootloader (Grub)&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pacman -S grub efibootmgr&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/install_grub.png&quot; alt=&quot;install grub&quot; /&gt;
+&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/install_efibootmgr.png&quot; alt=&quot;install efibootmgr&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安裝 grub bootloader for EFI&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grub-install --target&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;x86_64 --efi-directory&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/boot --bootloader-id&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;arch --recheck&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/grub_install.png&quot; alt=&quot;grub install&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安裝 grub bootloader for MBR boot&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grub-install --recheck /dev/sda2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;產生 grub 設定檔&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grub-mkconfig -o /boot/grub/grub.cfg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/grub_mkconfig.png&quot; alt=&quot;grub mkconfig&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;hostname&quot;&gt;Hostname&lt;/h2&gt;
+
+&lt;p&gt;設定主機名稱&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;YOUR-HOSTNAME&amp;quot;&lt;/span&gt; &amp;gt; /etc/hostname&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/hostname.png&quot; alt=&quot;hostname&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;編輯 &lt;code&gt;/etc/hosts&lt;/code&gt; 讓剛剛設定的主機名稱可以被解析到自己電腦。&lt;/p&gt;
+
+&lt;h2 id=&quot;pacman-setting&quot;&gt;Pacman setting&lt;/h2&gt;
+
+&lt;p&gt;編輯 pacman 設定檔，開啟 multilib。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;multilib 允許 64 位元系統可以安裝 32 位元的 library 。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;增加以下設定檔，以便安裝 yaourt，
+將來想要安裝 AUR (Arch User Repository) 的套件(非官方)，可以用 yaourt 存取。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vi /etc/pacman.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[archlinuxfr]
+SigLevel = Optional TrustAll
+Server = http://repo.archlinux.fr/$arch&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;安裝 yaourt&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pacman -S yaourt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;setup-user--change-password&quot;&gt;Setup User &amp;amp; Change Password&lt;/h2&gt;
+
+&lt;p&gt;變更 root 密碼&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;passwd&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;新增系統管理者並增加至 sudo list&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;useradd YOUR-USER-NAME -d /home/YOUR-USER-NAME -s /bin/bash
+mkhomedir_helper YOUR-USER-NAME
+passwd YOUR-USER-NAME
+sudoedit /etc/sudoers&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;新增以下&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;YOUR-USER-NAME ALL=(ALL) ALL&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;step-4-&quot;&gt;Step 4 第一次的重開機&lt;/h1&gt;
+
+&lt;h2 id=&quot;reboot&quot;&gt;Reboot&lt;/h2&gt;
+
+&lt;p&gt;做到此步驟，可以進行第一次的重開機，使用新安裝好的系統開機，以剛剛建立的系統管理者身份登入。&lt;/p&gt;
+
+&lt;p&gt;退出 chroot 環境&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;也可以使用 Ctrl-D 退出&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;卸載掛上的分割區&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;umount -R /mnt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;重開機&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sync &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; reboot&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;network-setup&quot;&gt;Network Setup&lt;/h2&gt;
+
+&lt;p&gt;以新使用者登入。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/first_login.png&quot; alt=&quot;first login&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;看一下網路卡設定，待會要設定 DHCP ，由此可得網路卡名稱是 &lt;code&gt;enp0s3&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ip link&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/iplink.png&quot; alt=&quot;iplink&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;啟用 DHCP 服務，使用 &lt;code&gt;enp0s3&lt;/code&gt; 這張網卡。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;dhcpd@enp0s3.service&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;開啟服務&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo systemctl start dhcpd@enp0s3.service&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;檢查狀態&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo systemctl status dhcpd@enp0s3.servce&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/dhcp_service.png&quot; alt=&quot;dhcp service&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ping google 看看&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ping google.com&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;網路通了！&lt;/p&gt;
+
+&lt;p&gt;———– 我是分割線 ———–&lt;/p&gt;
+
+&lt;p&gt;Part 1 到這裡一段落，接下來 Part 2 會設定 xfce4 桌面環境。&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://jacyzon.com/archlinux-installation-tutorial-part1/&quot;&gt;Archlinux Installation Tutorial Part 1 (Base System)&lt;/a&gt; was originally published by Jason YiZhang Chen at &lt;a href=&quot;https://jacyzon.com&quot;&gt;Jacyzon&lt;/a&gt; on October 29, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>

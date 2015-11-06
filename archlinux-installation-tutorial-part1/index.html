@@ -1,0 +1,750 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Archlinux Installation Tutorial Part 1 (Base System) &#8211; Jacyzon</title>
+<meta name="description" content="Archlinux installation tutorial part 1">
+<meta name="keywords" content="ArchLinux, installation, tutorial, 安裝, 教學">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Archlinux Installation Tutorial Part 1 (Base System)">
+<meta name="twitter:description" content="Archlinux installation tutorial part 1">
+<meta name="twitter:site" content="@jacyzon">
+<meta name="twitter:creator" content="@jacyzon">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jacyzon.com/images/default-thumb.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Archlinux Installation Tutorial Part 1 (Base System)">
+<meta property="og:description" content="Archlinux installation tutorial part 1">
+<meta property="og:url" content="https://jacyzon.com/archlinux-installation-tutorial-part1/">
+<meta property="og:site_name" content="Jacyzon">
+
+<meta property="og:image" content="https://jacyzon.com/images/default-thumb.png">
+
+
+
+
+
+
+<link rel="canonical" href="https://jacyzon.com/archlinux-installation-tutorial-part1/">
+<link href="https://jacyzon.com/feed.xml" type="application/atom+xml" rel="alternate" title="Jacyzon Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://jacyzon.com/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="https://jacyzon.com/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="https://jacyzon.com/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="https://jacyzon.com/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://jacyzon.com/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://jacyzon.com/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://jacyzon.com/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://jacyzon.com/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://jacyzon.com/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://jacyzon.com/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="https://jacyzon.com/">Jacyzon</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="https://jacyzon.com/posts/" >All Posts</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="https://secure.gravatar.com/userimage/75108089/52961d73f4e1cbc355c821a6454b98a3.png?size=100" class="bio-photo" alt="Jason YiZhang Chen bio photo">
+
+
+  <h3 itemprop="name">Jason YiZhang Chen</h3>
+  <p>A student at NCKU in Taipei, Taiwan</p>
+  <a href="mailto:jz@jacyzon.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+  <a href="http://twitter.com/jacyzon" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  
+  
+  
+  
+  
+  
+  <a href="http://github.com/jacyzon" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  <a href="http://stackoverflow.com/users/2977798/jason-yizhang-chen" class="author-social" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i> Stackoverflow</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  <a href="http://www.flickr.com/jacyzon" class="author-social" target="_blank"><i class="fa fa-fw fa-flickr"></i> Flickr</a>
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="https://jacyzon.com/archlinux-installation-tutorial-part1/" rel="bookmark" title="Archlinux Installation Tutorial Part 1 (Base System)">Archlinux Installation Tutorial Part 1 (Base System)</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <section id="table-of-contents" class="toc">
+  <header>
+    <h3>Archlinux Installation - Part 1</h3>
+  </header>
+<div id="drawer">
+<ul id="markdown-toc">
+  <li><a href="#step-1-" id="markdown-toc-step-1-">Step 1 分割硬碟</a>    <ul>
+      <li><a href="#bios-boot-partition" id="markdown-toc-bios-boot-partition">BIOS boot partition</a></li>
+      <li><a href="#boot-partition" id="markdown-toc-boot-partition">Boot partition</a></li>
+      <li><a href="#swap-partition" id="markdown-toc-swap-partition">Swap partition</a></li>
+      <li><a href="#root-partition" id="markdown-toc-root-partition">Root partition</a></li>
+      <li><a href="#home-partition" id="markdown-toc-home-partition">Home partition</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-2-" id="markdown-toc-step-2-">Step 2 格式化</a>    <ul>
+      <li><a href="#boot-partition-1" id="markdown-toc-boot-partition-1">Boot partition</a></li>
+      <li><a href="#swap-partitin" id="markdown-toc-swap-partitin">Swap partitin</a></li>
+      <li><a href="#root-file-system" id="markdown-toc-root-file-system">Root file system</a></li>
+      <li><a href="#home-paritition" id="markdown-toc-home-paritition">Home paritition</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-3-" id="markdown-toc-step-3-">Step 3 安裝</a>    <ul>
+      <li><a href="#mount-file-system" id="markdown-toc-mount-file-system">Mount file system</a></li>
+      <li><a href="#mirror-list-ranking" id="markdown-toc-mirror-list-ranking">Mirror List Ranking</a></li>
+      <li><a href="#install-base-system" id="markdown-toc-install-base-system">Install Base System</a></li>
+      <li><a href="#generate-fstab" id="markdown-toc-generate-fstab">Generate fstab</a></li>
+      <li><a href="#chroot" id="markdown-toc-chroot">Chroot</a></li>
+      <li><a href="#locale" id="markdown-toc-locale">Locale</a></li>
+      <li><a href="#timezone--clock" id="markdown-toc-timezone--clock">Timezone &amp; Clock</a></li>
+      <li><a href="#init-file-system" id="markdown-toc-init-file-system">Init File System</a></li>
+      <li><a href="#bootloader-grub" id="markdown-toc-bootloader-grub">Bootloader (Grub)</a></li>
+      <li><a href="#hostname" id="markdown-toc-hostname">Hostname</a></li>
+      <li><a href="#pacman-setting" id="markdown-toc-pacman-setting">Pacman setting</a></li>
+      <li><a href="#setup-user--change-password" id="markdown-toc-setup-user--change-password">Setup User &amp; Change Password</a></li>
+    </ul>
+  </li>
+  <li><a href="#step-4-" id="markdown-toc-step-4-">Step 4 第一次的重開機</a>    <ul>
+      <li><a href="#reboot" id="markdown-toc-reboot">Reboot</a></li>
+      <li><a href="#network-setup" id="markdown-toc-network-setup">Network Setup</a></li>
+    </ul>
+  </li>
+</ul>
+
+  </div>
+</section>
+
+<p>最近換了SSD (其實好幾個月了.. 拖到現在才寫)，舊電腦是傳統的BIOS，新電腦變UEFI BIOS，需要調整一下分割區跟bootloader,
+想說順便寫一下教學順便紀錄一下如何安裝Archlinux, BIOS boot + EFI 開機。</p>
+
+<p>Archlinux 是使用 <a href="https://en.wikipedia.org/wiki/Rolling_release">Rolling Release</a> 機制的Linux 作業系統，沒有固定的 release 週期，只有 LiveCD 每月會更新一次，不像 Windows 或 Ubuntu 每更新大版本就要重灌一次電腦，作為一般的工作機我認為是很適合的。</p>
+
+<p>另外喜歡的一點是 Archlinux 不會給你多餘的，所有東西都是盡量跟 upstream 一致，
+不太會在 package repository 做多餘的更改，因為什麽東西都要自己設定，對於如何運作會有比較清楚的了解，
+不會說，安裝系統就下一步下一步就裝好了，不知道爲什麽就 work 了。對於 Linux 有點熱情的話可以嘗試看看，對於電腦系統的運作會有比較好的了解。</p>
+
+<p>如果你是初學者、一般使用者，或是本來就很了解 Linux 系統，那些瑣碎的安裝與設定流程不是你喜歡或想要的，
+這邊推薦幾個我覺得不錯的發行版 ( 當然每個 distro 我都愛但沒用過總不敢亂說 )</p>
+
+<ul>
+  <li><a href="https://www.debian.org">Debian</a></li>
+  <li><a href="http://xubuntu.org">Xubuntu</a></li>
+  <li><a href="https://manjaro.github.io">Manjaro</a></li>
+  <li><a href="https://www.opensuse.org">Opensuse</a></li>
+</ul>
+
+<p>在進入 Archlinux 的奇幻旅程之前，<a href="https://wiki.archlinux.org">Archlinux Wiki</a> 是平常常會查閱的文件，大概是我目前看到維護最好的 Linux Wiki, 很多教學或問題都可以在 Wiki 找到，必讀。</p>
+
+<p>雖然有時候還是會發現：很好很詳細，還是不知道怎麽做 哈哈哈。</p>
+
+<p>———– 我是分割線 ———–</p>
+
+<p>** 進入正題 ** <del>前面廢話太多</del></p>
+
+<p>首先先去官網下載 <a href="https://www.archlinux.org/download/">Live CD</a>, 不論是用燒錄光碟或是用<a href="https://wiki.archlinux.org/index.php/USB_flash_installation_media"> USB 隨身碟</a></p>
+
+<h1 id="step-1-">Step 1 分割硬碟</h1>
+
+<p>我用兩顆硬碟做示範，之後會格式化，<strong>資料會不見</strong>，如果你是用舊電腦記得先備份啊，或是在 VM 底下操作。
+這裡有 <code>sda 64G, sdb 128G</code>，sda 裝系統，sdb 規劃作為家目錄。</p>
+
+<p>我們可以用 lsblk 列出所有 block devices。</p>
+
+<p>gdisk 是硬碟分割工具，與 fdisk 的區別是支援 GPT 分割表。
+我們先處理第一顆硬碟。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">gdisk /dev/sda</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sda.png" alt="gdisk sda" /></p>
+
+<p><code>p</code> 來列出現有的分割區，目前是空的。</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_p.png" alt="gdisk p" /></p>
+
+<h2 id="bios-boot-partition">BIOS boot partition</h2>
+
+<p>為了讓 Grub 能在 Legacy BIOS 開機，需要新增一個 BIOS boot partition。</p>
+
+<p><code>n</code> 來新增一個分割區。</p>
+
+<ul>
+  <li>Partition number: (預設, 直接enter)</li>
+  <li>First sector: (預設, 直接enter)</li>
+  <li>Last sector: +1M</li>
+  <li>Partition type: ef02。</li>
+</ul>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_bios_boot_partition.png" alt="gdisk bios boot" /></p>
+
+<p>再次用 p 來檢查分割區。</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_bios_boot_partition_p.png" alt="gdisk bios boot p" /></p>
+
+<h2 id="boot-partition">Boot partition</h2>
+
+<ul>
+  <li>Partition number: (預設, 直接enter)</li>
+  <li>First sector: (預設, 直接enter)</li>
+  <li>Last sector: +100M</li>
+  <li>Partition type: (預設, 直接enter)。</li>
+</ul>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_boot_partition.png" alt="gdisk boot" /></p>
+
+<p>再次用 p 來檢查分割區。</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_boot_partition_p.png" alt="gdisk boot p" /></p>
+
+<h2 id="swap-partition">Swap partition</h2>
+
+<ul>
+  <li>Partition number: (預設, 直接enter)</li>
+  <li>First sector: (預設, 直接enter)</li>
+  <li>Last sector: +4096M</li>
+  <li>Partition type: 8200 (Linux swap)。</li>
+</ul>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_swap_partition.png" alt="gdisk swap" /></p>
+
+<p>關於 swap partition 到底要分割多大，參考 Rat Hat 手冊 <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/sect-disk-partitioning-setup-x86.html">Recommended System Swap Space</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount of RAM in the system</th>
+      <th style="text-align: center">Recommended swap space</th>
+      <th style="text-align: right">Recommended swap space if allowing for hibernation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>less than 2 GB</td>
+      <td style="text-align: center">2 times the amount of RAM</td>
+      <td style="text-align: right">3 times the amount of RAM</td>
+    </tr>
+    <tr>
+      <td>2 GB - 8 GB</td>
+      <td style="text-align: center">Equal to the amount of RAM</td>
+      <td style="text-align: right">2 times the amount of RAM</td>
+    </tr>
+    <tr>
+      <td>8 GB - 64 GB</td>
+      <td style="text-align: center">0.5 times the amount of RAM</td>
+      <td style="text-align: right">1.5 times the amount of RAM</td>
+    </tr>
+    <tr>
+      <td>more than 64 GB</td>
+      <td style="text-align: center">workload dependent</td>
+      <td style="text-align: right">hibernation not recommended</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>如果想要使用休眠功能，swap partition 必須大於實體 RAM 大小。</p>
+</blockquote>
+
+<p>再次用<code>p</code>列出分割表狀態</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_swap_partition_p.png" alt="gdisk swap p" /></p>
+
+<h2 id="root-partition">Root partition</h2>
+
+<p>剩餘的空間我們分割作為跟目錄使用</p>
+
+<ul>
+  <li>Partition number: (預設, 直接enter)</li>
+  <li>First sector: (預設, 直接enter)</li>
+  <li>Last sector: (預設, 直接enter)</li>
+  <li>Partition type: (預設, 直接enter)</li>
+</ul>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_root_partition.png" alt="gdisk root" /></p>
+
+<p>再次用<code>p</code>列出分割表狀態</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_root_partition_p.png" alt="gdisk root p" /></p>
+
+<p>最終我們按<code>w</code>將分割表寫入硬碟</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sda_w.png" alt="gdisk sda w" /></p>
+
+<h2 id="home-partition">Home partition</h2>
+
+<p>sdb 分割作為home partition。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">gdisk /dev/sdb</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sdb.png" alt="gdisk sdb" /></p>
+
+<ul>
+  <li>Partition number: (預設, 直接enter)</li>
+  <li>First sector: (預設, 直接enter)</li>
+  <li>Last sector: (預設, 直接enter)</li>
+  <li>Partition type: (預設, 直接enter)</li>
+</ul>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition.png" alt="gdisk home" /></p>
+
+<p>再次用<code>p</code>列出分割表狀態</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition_p.png" alt="gdisk home p" /></p>
+
+<p>最終我們按<code>w</code>將分割表寫入硬碟</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sdb_w.png" alt="gdisk sdb w" /></p>
+
+<hr />
+
+<h1 id="step-2-">Step 2 格式化</h1>
+
+<h2 id="boot-partition-1">Boot partition</h2>
+
+<p>建議格式化為Fat 32，被比較多的 UEFI BIOS 與 Bootloader 支援。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs.vfat -F <span class="m">32</span> /dev/sda2</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkfs_vfat_boot_partition.png" alt="mkfs vfat boot partition" /></p>
+
+<h2 id="swap-partitin">Swap partitin</h2>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkswap -F <span class="m">32</span> /dev/sda3</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkswap.png" alt="mkswap" /></p>
+
+<h2 id="root-file-system">Root file system</h2>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs.btrfs /dev/sda4</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkfs_btrfs_root_partition.png" alt="mkfs btrfs root partition" /></p>
+
+<h2 id="home-paritition">Home paritition</h2>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs.ext4 /dev/sdb1</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkfs_ext4_home_partition.png" alt="mkfs ext4 home partition" /></p>
+
+<hr />
+
+<h1 id="step-3-">Step 3 安裝</h1>
+
+<p>在安裝前必須先將檔案系統掛載進來，chroot 之後才可以安裝。</p>
+
+<h2 id="mount-file-system">Mount file system</h2>
+
+<p>掛載 Root file system</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount /dev/sda4 /mnt</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mount_root.png" alt="mount root" /></p>
+
+<p>掛載 Boot partition</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir /mnt/boot</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkdir_boot.png" alt="mkdir boot" /></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount /dev/sda2 /mnt/boot</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mount_boot.png" alt="mount boot" /></p>
+
+<p>掛載 Swap partition</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">swapon /dev/sda3</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/swapon.png" alt="swapon" /></p>
+
+<p>掛載 Home partition</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir /mnt/home</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkdir_home.png" alt="mkdir home" /></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount /dev/sdb1 /mnt/home</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mount_home.png" alt="mount home" /></p>
+
+<h2 id="mirror-list-ranking">Mirror List Ranking</h2>
+
+<p>在安裝前先利用<code>rankmirrors</code>工具來排序比較快的站點。
+在排序前先複製一份 mirrorlist，因為等一下會被覆蓋掉，再註解掉不想加入的站點(可選)，便可開始排序。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+rankmirrors -n <span class="m">5</span> /etc/pacman.d/mirrorlist.bak &gt; /etc/pacman.d/mirrorlist</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/rankmirrors.png" alt="rankmirrors" /></p>
+
+<h2 id="install-base-system">Install Base System</h2>
+
+<p>安裝基本的 base 和 base-devel packages，base-devel 包含了基本的編譯工具。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">pacstrap -i /mnt base base-devel</code></pre></div>
+
+<p>按 Enter 安裝所有的軟體。</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/pacstrap.png" alt="pacstrap" /></p>
+
+<h2 id="generate-fstab">Generate fstab</h2>
+
+<p><code>/etc/fstab</code> 這個檔案設定了 Linux 系統開機需要掛載哪些檔案系統，使用<code>genfstab</code> 可以自動產生。</p>
+
+<p><code>-U</code> 的參數是表示使用 UUID 作為分割區的識別碼，不會有因為換了排線接線順序導致代號變動的情況。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">genfatab -U -p /mnt &gt;&gt; /mnt/etc/fstab</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/genfstab.png" alt="genfstab" /></p>
+
+<blockquote>
+  <p>如果使用 SSD ，建議可以在產生之後再編輯 <code>/etc/fstab</code> ，在 SSD 的分割區多加 <code>discard</code> 與 <code>noatime</code> 這些參數。
+<code>discard</code> 參數會在檔案被刪除之後真的實際抹除檔案，因為在 SSD ，寫入檔案時必須先將先前資料清空。
+傳統 Hard Drive 刪除檔案只是將檔案標記為可刪除的狀態，詳見 <a href="https://en.wikipedia.org/wiki/Trim_%28computing%29">Trim</a>。
+<code>noatime</code> 則是不記錄檔案讀取時間。以上兩個設定，對 SSD 的效能都有幫助。
+關於 <code>atime</code>,<code>noatime</code>, <code>relatime</code> 詳見 <a href="https://wiki.archlinux.org/index.php/Fstab#atime_options">fstab</a> 與 <a href="https://wiki.archlinux.org/index.php/Solid_State_Drives">Solid State Drives</a>。</p>
+</blockquote>
+
+<h2 id="chroot">Chroot</h2>
+
+<p>Chroot到掛載的檔案系統裡面使用root身分來繼續安裝系統，
+chroot 之後就很像進到了要安裝的系統裡面，雖然我們現在是用Live CD。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">arch-root /mnt /bin/bash</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/chroot.png" alt="chroot" /></p>
+
+<h2 id="locale">Locale</h2>
+
+<p>編輯語系設定檔，編輯 <code>/etc/locale.gen</code>，將 <code>zh_TW.UTF-8 UTF-8</code> 與 <code>en_US.UTF-8 UTF-8</code> 取消註解。</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/locale.png" alt="locale" /></p>
+
+<p><strong>產生語系檔</strong></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">locale-gen</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/locale_gen.png" alt="locale gen" /></p>
+
+<p><strong>設定預設語系</strong></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&quot;en_US.UTF-8&quot;</span> &gt; /etc/locale.conf</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/default_locale.png" alt="default locale" /></p>
+
+<blockquote>
+  <p>建議可以用英文作為預設語系，這樣在無 GUI 介面下的 terminal 時才不會有中文字型問題，
+真正的語系可以往後在 <code>.xinitrc</code> 設定。</p>
+</blockquote>
+
+<h2 id="timezone--clock">Timezone &amp; Clock</h2>
+
+<p>設定時區</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ln -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/timezone.png" alt="timezone" /></p>
+
+<p>同步 Hardware clock</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">hwclock --systohc --utc</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/hwclock.png" alt="hwclock" /></p>
+
+<blockquote>
+  <p>如果你是灌雙系統 (Linux/Windows)，可能會遇到 Windows 用 localtime 非 UTC 的問題，
+詳見 <a href="https://wiki.archlinux.org/index.php/Time#UTC_in_Windows">UTC_in_Windows</a></p>
+</blockquote>
+
+<h2 id="init-file-system">Init File System</h2>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkinitcpio -p linux</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/mkramfs.png" alt="mkramfs" /></p>
+
+<h2 id="bootloader-grub">Bootloader (Grub)</h2>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">pacman -S grub efibootmgr</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/install_grub.png" alt="install grub" />
+<img src="https://jacyzon.com/images/archlinux-part-1/install_efibootmgr.png" alt="install efibootmgr" /></p>
+
+<p>安裝 grub bootloader for EFI</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grub-install --target<span class="o">=</span>x86_64 --efi-directory<span class="o">=</span>/boot --bootloader-id<span class="o">=</span>arch --recheck</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/grub_install.png" alt="grub install" /></p>
+
+<p>安裝 grub bootloader for MBR boot</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grub-install --recheck /dev/sda2</code></pre></div>
+
+<p>產生 grub 設定檔</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grub-mkconfig -o /boot/grub/grub.cfg</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/grub_mkconfig.png" alt="grub mkconfig" /></p>
+
+<h2 id="hostname">Hostname</h2>
+
+<p>設定主機名稱</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&quot;YOUR-HOSTNAME&quot;</span> &gt; /etc/hostname</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/hostname.png" alt="hostname" /></p>
+
+<p>編輯 <code>/etc/hosts</code> 讓剛剛設定的主機名稱可以被解析到自己電腦。</p>
+
+<h2 id="pacman-setting">Pacman setting</h2>
+
+<p>編輯 pacman 設定檔，開啟 multilib。</p>
+
+<blockquote>
+  <p>multilib 允許 64 位元系統可以安裝 32 位元的 library 。</p>
+</blockquote>
+
+<p>增加以下設定檔，以便安裝 yaourt，
+將來想要安裝 AUR (Arch User Repository) 的套件(非官方)，可以用 yaourt 存取。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">vi /etc/pacman.conf</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">[archlinuxfr]
+SigLevel = Optional TrustAll
+Server = http://repo.archlinux.fr/$arch</code></pre></div>
+
+<p>安裝 yaourt</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">pacman -S yaourt</code></pre></div>
+
+<h2 id="setup-user--change-password">Setup User &amp; Change Password</h2>
+
+<p>變更 root 密碼</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">passwd</code></pre></div>
+
+<p>新增系統管理者並增加至 sudo list</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">useradd YOUR-USER-NAME -d /home/YOUR-USER-NAME -s /bin/bash
+mkhomedir_helper YOUR-USER-NAME
+passwd YOUR-USER-NAME
+sudoedit /etc/sudoers</code></pre></div>
+
+<p>新增以下</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">YOUR-USER-NAME ALL=(ALL) ALL</code></pre></div>
+
+<hr />
+
+<h1 id="step-4-">Step 4 第一次的重開機</h1>
+
+<h2 id="reboot">Reboot</h2>
+
+<p>做到此步驟，可以進行第一次的重開機，使用新安裝好的系統開機，以剛剛建立的系統管理者身份登入。</p>
+
+<p>退出 chroot 環境</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">exit</span></code></pre></div>
+
+<blockquote>
+  <p>也可以使用 Ctrl-D 退出</p>
+</blockquote>
+
+<p>卸載掛上的分割區</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">umount -R /mnt</code></pre></div>
+
+<p>重開機</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sync <span class="o">&amp;&amp;</span> reboot</code></pre></div>
+
+<h2 id="network-setup">Network Setup</h2>
+
+<p>以新使用者登入。</p>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/first_login.png" alt="first login" /></p>
+
+<p>看一下網路卡設定，待會要設定 DHCP ，由此可得網路卡名稱是 <code>enp0s3</code></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ip link</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/iplink.png" alt="iplink" /></p>
+
+<p>啟用 DHCP 服務，使用 <code>enp0s3</code> 這張網卡。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>dhcpd@enp0s3.service</code></pre></div>
+
+<p>開啟服務</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo systemctl start dhcpd@enp0s3.service</code></pre></div>
+
+<p>檢查狀態</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo systemctl status dhcpd@enp0s3.servce</code></pre></div>
+
+<p><img src="https://jacyzon.com/images/archlinux-part-1/dhcp_service.png" alt="dhcp service" /></p>
+
+<p>ping google 看看</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>ping google.com</code></pre></div>
+
+<p>網路通了！</p>
+
+<p>———– 我是分割線 ———–</p>
+
+<p>Part 1 到這裡一段落，接下來 Part 2 會設定 xfce4 桌面環境。</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=https://jacyzon.com/archlinux-installation-tutorial-part1/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://jacyzon.com/archlinux-installation-tutorial-part1/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=https://jacyzon.com/archlinux-installation-tutorial-part1/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Archlinux Installation Tutorial Part 1 (Base System)</strong> was published on <time datetime="2015-10-29T23:51:39+08:00">October 29, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <footer>
+    
+
+<span>&copy; 2015 Jason YiZhang Chen</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://jacyzon.com/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="https://jacyzon.com/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-69603841-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+  
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'jacyzon'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.setAttribute('data-timestamp', +new Date());
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+</body>
+</html>
