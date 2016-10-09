@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="https://jacyzon.com/feed.xml" />
 <link rel="alternate" type="text/html" href="https://jacyzon.com" />
-<updated>2016-10-09T20:48:52+08:00</updated>
+<updated>2016-10-09T20:51:14+08:00</updated>
 <id>https://jacyzon.com/</id>
 <author>
   <name>Jason YiZhang Chen</name>
@@ -103,7 +103,7 @@
 &lt;h1 id=&quot;step-1-&quot;&gt;Step 1 分割硬碟&lt;/h1&gt;
 
 &lt;p&gt;我用兩顆硬碟做示範，之後會格式化，&lt;strong&gt;資料會不見&lt;/strong&gt;，如果你是用舊電腦記得先備份啊，或是在 VM 底下操作。
-這裡有 &lt;code&gt;sda 64G, sdb 128G&lt;/code&gt;，sda 裝系統，sdb 規劃作為家目錄。&lt;/p&gt;
+這裡有 &lt;code&gt;sda 64G&lt;/code&gt;，作為系統。&lt;/p&gt;
 
 &lt;p&gt;我們可以用 lsblk 列出所有 block devices。&lt;/p&gt;
 
