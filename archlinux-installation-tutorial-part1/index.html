@@ -153,14 +153,12 @@
       <li><a href="#boot-partition" id="markdown-toc-boot-partition">Boot partition</a></li>
       <li><a href="#swap-partition" id="markdown-toc-swap-partition">Swap partition</a></li>
       <li><a href="#root-partition" id="markdown-toc-root-partition">Root partition</a></li>
-      <li><a href="#home-partition" id="markdown-toc-home-partition">Home partition</a></li>
     </ul>
   </li>
   <li><a href="#step-2-" id="markdown-toc-step-2-">Step 2 格式化</a>    <ul>
       <li><a href="#boot-partition-1" id="markdown-toc-boot-partition-1">Boot partition</a></li>
       <li><a href="#swap-partitin" id="markdown-toc-swap-partitin">Swap partitin</a></li>
       <li><a href="#root-file-system" id="markdown-toc-root-file-system">Root file system</a></li>
-      <li><a href="#home-paritition" id="markdown-toc-home-paritition">Home paritition</a></li>
     </ul>
   </li>
   <li><a href="#step-3-" id="markdown-toc-step-3-">Step 3 安裝</a>    <ul>
@@ -343,31 +341,6 @@
 
 <p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sda_w.png" alt="gdisk sda w" /></p>
 
-<h2 id="home-partition">Home partition</h2>
-
-<p>sdb 分割作為home partition。</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">gdisk /dev/sdb</code></pre></div>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sdb.png" alt="gdisk sdb" /></p>
-
-<ul>
-  <li>Partition number: (預設, 直接enter)</li>
-  <li>First sector: (預設, 直接enter)</li>
-  <li>Last sector: (預設, 直接enter)</li>
-  <li>Partition type: (預設, 直接enter)</li>
-</ul>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition.png" alt="gdisk home" /></p>
-
-<p>再次用<code>p</code>列出分割表狀態</p>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition_p.png" alt="gdisk home p" /></p>
-
-<p>最終我們按<code>w</code>將分割表寫入硬碟</p>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/gdisk_sdb_w.png" alt="gdisk sdb w" /></p>
-
 <hr />
 
 <h1 id="step-2-">Step 2 格式化</h1>
@@ -382,7 +355,7 @@
 
 <h2 id="swap-partitin">Swap partitin</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkswap -F <span class="m">32</span> /dev/sda3</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkswap /dev/sda3</code></pre></div>
 
 <p><img src="https://jacyzon.com/images/archlinux-part-1/mkswap.png" alt="mkswap" /></p>
 
@@ -391,12 +364,6 @@
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs.btrfs /dev/sda4</code></pre></div>
 
 <p><img src="https://jacyzon.com/images/archlinux-part-1/mkfs_btrfs_root_partition.png" alt="mkfs btrfs root partition" /></p>
-
-<h2 id="home-paritition">Home paritition</h2>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkfs.ext4 /dev/sdb1</code></pre></div>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/mkfs_ext4_home_partition.png" alt="mkfs ext4 home partition" /></p>
 
 <hr />
 
@@ -427,16 +394,6 @@
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">swapon /dev/sda3</code></pre></div>
 
 <p><img src="https://jacyzon.com/images/archlinux-part-1/swapon.png" alt="swapon" /></p>
-
-<p>掛載 Home partition</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mkdir /mnt/home</code></pre></div>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/mkdir_home.png" alt="mkdir home" /></p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">mount /dev/sdb1 /mnt/home</code></pre></div>
-
-<p><img src="https://jacyzon.com/images/archlinux-part-1/mount_home.png" alt="mount home" /></p>
 
 <h2 id="mirror-list-ranking">Mirror List Ranking</h2>
 
@@ -548,7 +505,7 @@ chroot 之後就很像進到了要安裝的系統裡面，雖然我們現在是�
 
 <p>安裝 grub bootloader for MBR boot</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">grub-install --recheck /dev/sda2</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">grub-install --recheck /dev/sda</code></pre></div>
 
 <p>產生 grub 設定檔</p>
 

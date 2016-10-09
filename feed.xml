@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="https://jacyzon.com/feed.xml" />
 <link rel="alternate" type="text/html" href="https://jacyzon.com" />
-<updated>2016-06-29T01:23:59+08:00</updated>
+<updated>2016-10-09T20:48:52+08:00</updated>
 <id>https://jacyzon.com/</id>
 <author>
   <name>Jason YiZhang Chen</name>
@@ -38,14 +38,12 @@
       &lt;li&gt;&lt;a href=&quot;#boot-partition&quot; id=&quot;markdown-toc-boot-partition&quot;&gt;Boot partition&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#swap-partition&quot; id=&quot;markdown-toc-swap-partition&quot;&gt;Swap partition&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#root-partition&quot; id=&quot;markdown-toc-root-partition&quot;&gt;Root partition&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#home-partition&quot; id=&quot;markdown-toc-home-partition&quot;&gt;Home partition&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#step-2-&quot; id=&quot;markdown-toc-step-2-&quot;&gt;Step 2 格式化&lt;/a&gt;    &lt;ul&gt;
       &lt;li&gt;&lt;a href=&quot;#boot-partition-1&quot; id=&quot;markdown-toc-boot-partition-1&quot;&gt;Boot partition&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#swap-partitin&quot; id=&quot;markdown-toc-swap-partitin&quot;&gt;Swap partitin&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;#root-file-system&quot; id=&quot;markdown-toc-root-file-system&quot;&gt;Root file system&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#home-paritition&quot; id=&quot;markdown-toc-home-paritition&quot;&gt;Home paritition&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#step-3-&quot; id=&quot;markdown-toc-step-3-&quot;&gt;Step 3 安裝&lt;/a&gt;    &lt;ul&gt;
@@ -228,31 +226,6 @@
 
 &lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sda_w.png&quot; alt=&quot;gdisk sda w&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;home-partition&quot;&gt;Home partition&lt;/h2&gt;
-
-&lt;p&gt;sdb 分割作為home partition。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gdisk /dev/sdb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sdb.png&quot; alt=&quot;gdisk sdb&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Partition number: (預設, 直接enter)&lt;/li&gt;
-  &lt;li&gt;First sector: (預設, 直接enter)&lt;/li&gt;
-  &lt;li&gt;Last sector: (預設, 直接enter)&lt;/li&gt;
-  &lt;li&gt;Partition type: (預設, 直接enter)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition.png&quot; alt=&quot;gdisk home&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;再次用&lt;code&gt;p&lt;/code&gt;列出分割表狀態&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_home_partition_p.png&quot; alt=&quot;gdisk home p&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最終我們按&lt;code&gt;w&lt;/code&gt;將分割表寫入硬碟&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/gdisk_sdb_w.png&quot; alt=&quot;gdisk sdb w&quot; /&gt;&lt;/p&gt;
-
 &lt;hr /&gt;
 
 &lt;h1 id=&quot;step-2-&quot;&gt;Step 2 格式化&lt;/h1&gt;
@@ -267,7 +240,7 @@
 
 &lt;h2 id=&quot;swap-partitin&quot;&gt;Swap partitin&lt;/h2&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkswap -F &lt;span class=&quot;m&quot;&gt;32&lt;/span&gt; /dev/sda3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkswap /dev/sda3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkswap.png&quot; alt=&quot;mkswap&quot; /&gt;&lt;/p&gt;
 
@@ -276,12 +249,6 @@
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkfs.btrfs /dev/sda4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkfs_btrfs_root_partition.png&quot; alt=&quot;mkfs btrfs root partition&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;home-paritition&quot;&gt;Home paritition&lt;/h2&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkfs.ext4 /dev/sdb1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkfs_ext4_home_partition.png&quot; alt=&quot;mkfs ext4 home partition&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -312,16 +279,6 @@
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;swapon /dev/sda3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/swapon.png&quot; alt=&quot;swapon&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;掛載 Home partition&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkdir /mnt/home&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mkdir_home.png&quot; alt=&quot;mkdir home&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount /dev/sdb1 /mnt/home&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://jacyzon.com/images/archlinux-part-1/mount_home.png&quot; alt=&quot;mount home&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;mirror-list-ranking&quot;&gt;Mirror List Ranking&lt;/h2&gt;
 
@@ -433,7 +390,7 @@ chroot 之後就很像進到了要安裝的系統裡面，雖然我們現在是�
 
 &lt;p&gt;安裝 grub bootloader for MBR boot&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grub-install --recheck /dev/sda2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grub-install --recheck /dev/sda&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;產生 grub 設定檔&lt;/p&gt;
 
